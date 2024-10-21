@@ -1,0 +1,66 @@
+{
+  "name": "tools-for-javascript-typescript",
+  "displayName": "Tools for JavaScript/TypeScript",
+  "description": "Automatically sets up development tools for JS/TS projects",
+  "publisher": "IDPArchitect",
+  "version": "0.0.2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IDPArchitect/vscode-javascript-typescript-tools.git"
+  },
+  "main": "./out/extension.js",
+  "engines": {
+    "vscode": "^1.81.0"
+  },
+  "activationEvents": ["onCommand:tools.setupTools"],
+  "contributes": {
+    "commands": [
+      {
+        "command": "tools.setupTools",
+        "title": "Tools: Setup Development Tools for Javascript and Typescript"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "test": "npm run compile && node ./out/test/runTest.js",
+    "prepare": "husky install"
+  },
+  "keywords": [
+    "vscode",
+    "extension",
+    "javascript",
+    "typescript",
+    "eslint",
+    "prettier",
+    "husky",
+    "development-tools"
+  ],
+  "author": "James Knott",
+  "license": "MIT",
+  "devDependencies": {
+    "@commitlint/cli": "^17.6.7",
+    "@commitlint/config-conventional": "^17.6.7",
+    "@types/node": "^14.14.37",
+    "@typescript-eslint/eslint-plugin": "^8.10.0",
+    "@typescript-eslint/parser": "^8.10.0",
+    "eslint": "9.13.0",
+    "typescript": "5.2.2",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.2.2",
+    "prettier": "^2.8.8",
+    "@types/vscode": "^1.81.0",
+    "@vscode/test-electron": "^2.3.1",
+    "@vscode/vsce": "3.2.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": ["eslint --fix", "prettier --write"],
+    "*.json": ["prettier --write"],
+    "*.md": ["prettier --write"]
+  }
+}
+
+
+
