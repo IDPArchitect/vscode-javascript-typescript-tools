@@ -26,3 +26,12 @@ Refer to the [VSCode API Reference](https://code.visualstudio.com/api) for more 
 
 - Refer to the [VSCode Extension Documentation](https://code.visualstudio.com/api) for guidance.
 - Feel free to open an issue on the [GitHub repository](https://github.com/IDPArchitect/vscode-javascript-typescript-tools/issues).
+
+
+## To build a new version of the plugin
+
+- Remove the out folder 
+- Uninstall the current version from vscode so its easier to test.
+- Run this command `vsce package --baseContentUrl=https://github.com/IDPArchitect/vscode-javascript-typescript-tools.git`
+- You can go to the out folder and select the extension.js file and hit F5 to debug
+- You can also just install the plugin to start testing
