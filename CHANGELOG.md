@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.5] - 2024-10-22
+
+ - Tested with MacOS and Linux. Windows users will be out of luck until I can find a Windows machine to test it with.
+ 
 All notable changes to this project will be documented in this file.
 
 ## [0.0.2] - 2024-10-20
