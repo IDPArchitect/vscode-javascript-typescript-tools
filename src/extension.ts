@@ -378,7 +378,7 @@ function setupConfigurations(rootPath: string): Promise<void> {
 
     // Update lint-staged configuration
     packageJson['lint-staged'] = packageJson['lint-staged'] || {
-      '*.{js,ts}': ['npx prettier --write', 'eslint --fix --config eslint.config.mjs'],
+      '*.{js,ts}': ['npx prettier --write', 'npx eslint --fix --config eslint.config.mjs'],
     };
 
     // Write back package.json
@@ -398,8 +398,6 @@ import typescriptEslintParser from "@typescript-eslint/parser";
 import importPlugin from "eslint-plugin-import";
 import prettierPlugin from "eslint-plugin-prettier";
 
-
-
 export default [
   {
     ignores: ["out/**", "node_modules/**"],
@@ -416,6 +414,17 @@ export default [
       "import": importPlugin,
       "prettier": prettierPlugin,
     },
+    settings: {
+      "import/parsers": {
+        "@typescript-eslint/parser": [".ts", ".tsx"]
+      },
+      "import/resolver": {
+        "typescript": true,
+        "node": {
+          "extensions": [".js", ".jsx", ".ts", ".tsx", ".json"]
+        }
+      }
+    },
     rules: {
       // Recommended rules from @typescript-eslint/eslint-plugin
       ...typescriptEslintPlugin.configs.recommended.rules,
@@ -425,7 +434,7 @@ export default [
 
       // Prettier integration
       "prettier/prettier": "error",
-
+      "endOfLine": "auto",
       // Custom rules
       "@typescript-eslint/naming-convention": [
         "warn",
@@ -438,6 +447,17 @@ export default [
       "eqeqeq": ["warn", "always"],
       "no-throw-literal": "warn",
       "semi": "warn",
+      "import/extensions": [
+        "error",
+        "ignorePackages",
+        {
+          "js": "never",
+          "mjs": "never",
+          "jsx": "never",
+          "ts": "never",
+          "tsx": "never"
+        }
+      ]
     },
   },
 ];
