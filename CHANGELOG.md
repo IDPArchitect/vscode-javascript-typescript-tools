@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.6] - 2024-10-29
+
+ - Fixed formatting error and fixed Windows compatibility by adding the npx command in front of prettier.
+
 ## [0.0.5] - 2024-10-22
 
  - Tested with MacOS and Linux. Windows users will be out of luck until I can find a Windows machine to test it with.

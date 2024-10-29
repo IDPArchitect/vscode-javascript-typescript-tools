@@ -4,7 +4,7 @@
   "description": "Automatically sets up development tools for JS/TS projects",
   "publisher": "IDPArchitect",
   "icon": "images/ts-logo-128.png",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "repository": {
     "type": "git",
     "url": "https://github.com/IDPArchitect/vscode-javascript-typescript-tools.git"
@@ -57,9 +57,9 @@
     "@vscode/vsce": "3.2.0"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": ["eslint --fix", "prettier --write"],
-    "*.json": ["prettier --write"],
-    "*.md": ["prettier --write"]
+    "*.{js,jsx,ts,tsx}": ["npx eslint --fix", "npx prettier --write"],
+    "*.json": ["npx prettier --write"],
+    "*.md": ["npx prettier --write"]
   }
 }
 
