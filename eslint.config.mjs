@@ -39,7 +39,7 @@ export default [
 
       // Prettier integration
       "prettier/prettier": "error",
-      "endOfLine": "auto",
+      "endOfLine": "off",
       // Custom rules
       "@typescript-eslint/naming-convention": [
         "warn",
