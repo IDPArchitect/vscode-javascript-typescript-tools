@@ -96,6 +96,12 @@ function initializeProject(rootPath: string): Promise<void> {
         new Promise((res, rej) => {
           const gitCommand = process.platform === 'win32' ? 'git.exe' : 'git';
           const gitInit = spawn(gitCommand, ['init'], { cwd: rootPath, shell: true });
+          const gitRenameBranch = spawn(gitCommand, ['branch', '-M', 'main'], { cwd: rootPath, shell: true });
+          const fs = require('fs');
+          const readmePath = path.join(rootPath, 'README.md');
+              fs.writeFileSync(readmePath, '# Project Title\n\nProject description goes here.');
+          const gitAdd = spawn(gitCommand, ['add', 'README.md'], { cwd: rootPath, shell: true });
+          const gitCommit = spawn(gitCommand, ['commit', '-m', 'chore: initial commit'], { cwd: rootPath, shell: true });
 
           gitInit.stdout.on('data', (data) => {
             console.log(`git init stdout: ${data}`);
@@ -150,6 +156,7 @@ function installDevelopmentTools(rootPath: string): Promise<void> {
       'eslint-plugin-prettier@4.2.1',
       'eslint-plugin-import@2.31.0',
       'eslint-plugin-unicorn@48.0.0',
+      'eslint-import-resolver-typescript@3.6.3',
     ];
 
     // Function to extract package name from tool@version
@@ -434,7 +441,7 @@ export default [
 
       // Prettier integration
       "prettier/prettier": "error",
-      "endOfLine": "off",
+      "endOfLine": ["off","auto"],
       // Custom rules
       "@typescript-eslint/naming-convention": [
         "warn",
@@ -519,7 +526,7 @@ function initializeHusky(rootPath: string): Promise<void> {
       const preCommitScriptContent = `#!/usr/bin/env bash
 
 npx lint-staged
-prettier $(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\\\ |g') --write --ignore-unknown
+npx prettier $(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\\\ |g') --write --ignore-unknown
 git update-index --again
 `;
       try {
